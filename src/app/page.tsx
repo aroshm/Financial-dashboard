@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Download } from 'lucide-react';
 import { Dashboard } from '@/components/Dashboard';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -10,7 +10,23 @@ import { useExpenses } from '@/context/ExpenseContext';
 
 export default function Home() {
   const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
-  const { addExpense } = useExpenses();
+  const { expenses, addExpense } = useExpenses();
+
+  const handleExport = () => {
+    const headers = ['Date', 'Category', 'Amount', 'Description'];
+    const rows = expenses.map(exp => [
+      new Date(exp.date).toISOString().split('T')[0],
+      exp.category,
+      exp.amount.toString(),
+      `"${exp.description.replace(/"/g, '""')}"`
+    ]);
+    const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'expenses_export.csv';
+    link.click();
+  };
 
   return (
     <div className="space-y-8 animate-in fade-in-50 duration-500">
@@ -21,9 +37,14 @@ export default function Home() {
             Your personal financial overview.
           </p>
         </div>
-        <Button onClick={() => setIsAddModalOpen(true)} className="w-full sm:w-auto shrink-0 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
-          <Plus className="mr-2 h-4 w-4" /> Add Expense
-        </Button>
+        <div className="flex w-full sm:w-auto gap-2 items-center">
+          <Button variant="outline" onClick={handleExport} className="w-full sm:w-auto shrink-0 shadow-sm transition-all hover:scale-105 active:scale-95">
+            <Download className="mr-2 h-4 w-4" /> Export Data
+          </Button>
+          <Button onClick={() => setIsAddModalOpen(true)} className="w-full sm:w-auto shrink-0 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
+            <Plus className="mr-2 h-4 w-4" /> Add Expense
+          </Button>
+        </div>
       </div>
 
       <div className="glass rounded-2xl p-4 sm:p-6 border shadow-2xl">
