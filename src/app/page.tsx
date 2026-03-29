@@ -1,15 +1,17 @@
 'use client';
 
 import * as React from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Download } from 'lucide-react';
 import { Dashboard } from '@/components/Dashboard';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ExpenseForm } from '@/components/ExpenseForm';
+import { AdvancedExportDialog } from '@/components/AdvancedExportDialog';
 import { useExpenses } from '@/context/ExpenseContext';
 
 export default function Home() {
   const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
+  const [isExportOpen, setIsExportOpen] = React.useState(false);
   const { addExpense } = useExpenses();
 
   return (
@@ -21,9 +23,14 @@ export default function Home() {
             Your personal financial overview.
           </p>
         </div>
-        <Button onClick={() => setIsAddModalOpen(true)} className="w-full sm:w-auto shrink-0 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
-          <Plus className="mr-2 h-4 w-4" /> Add Expense
-        </Button>
+        <div className="flex w-full sm:w-auto gap-2 items-center">
+          <Button variant="outline" onClick={() => setIsExportOpen(true)} className="w-full sm:w-auto shrink-0 shadow-sm transition-all hover:scale-105 active:scale-95">
+            <Download className="mr-2 h-4 w-4" /> Export Report
+          </Button>
+          <Button onClick={() => setIsAddModalOpen(true)} className="w-full sm:w-auto shrink-0 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
+            <Plus className="mr-2 h-4 w-4" /> Add Expense
+          </Button>
+        </div>
       </div>
 
       <div className="glass rounded-2xl p-4 sm:p-6 border shadow-2xl">
@@ -42,6 +49,8 @@ export default function Home() {
           onCancel={() => setIsAddModalOpen(false)}
         />
       </Dialog>
+      
+      <AdvancedExportDialog open={isExportOpen} onOpenChange={setIsExportOpen} />
     </div>
   );
 }
