@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ExpenseProvider } from '@/context/ExpenseContext';
+import { Toaster } from 'sonner';
 import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -52,6 +53,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+          <Toaster theme="dark" position="bottom-right" />
         </ExpenseProvider>
       </body>
     </html>
