@@ -1,9 +1,9 @@
 [0m[0m
-[0m[4mD:\AI dev\Financial-dashboard\src\components\CloudExportHub.tsx[24m[0m
-[0m  [2m26:18[22m  [31merror[39m  'DialogHeader' is defined but never used       [2m@typescript-eslint/no-unused-vars[22m[0m
-[0m  [2m26:32[22m  [31merror[39m  'DialogTitle' is defined but never used        [2m@typescript-eslint/no-unused-vars[22m[0m
-[0m  [2m30:10[22m  [31merror[39m  'formatCurrency' is defined but never used     [2m@typescript-eslint/no-unused-vars[22m[0m
-[0m  [2m56:11[22m  [31merror[39m  'expenses' is assigned a value but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m[4mD:\AI dev\Financial-dashboard\src\components\MonthlyInsights.tsx[24m[0m
+[0m   [2m5:26[22m  [31merror[39m  'cn' is defined but never used                      [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m6:80[22m  [31merror[39m  'Legend' is defined but never used                  [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m   [2m8:52[22m  [31merror[39m  'CardDescription' is defined but never used         [2m@typescript-eslint/no-unused-vars[22m[0m
+[0m  [2m36:9[22m   [31merror[39m  'totalSpending' is assigned a value but never used  [2m@typescript-eslint/no-unused-vars[22m[0m
 [0m[0m
 [0m[31m[1m✖ 4 problems (4 errors, 0 warnings)[22m[39m[0m
 [0m[31m[1m[22m[39m[0m

@@ -35,6 +35,9 @@ export default function RootLayout({
                     <Link href="/" className="transition-colors hover:text-foreground/80 text-foreground/60 text-sm font-medium">
                       Dashboard
                     </Link>
+                    <Link href="/insights" className="transition-colors hover:text-foreground/80 text-foreground/60 text-sm font-medium">
+                      Insights
+                    </Link>
                     <Link href="/expenses" className="transition-colors hover:text-foreground/80 text-foreground/60 text-sm font-medium">
                       Transactions
                     </Link>
